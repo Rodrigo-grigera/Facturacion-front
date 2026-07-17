@@ -1,0 +1,97 @@
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+
+/* ==========================
+   Tema claro (por defecto)
+========================== */
+
+:root {
+  --bg: #817f7f;
+  --surface: #ffffff;
+  --surface-2: #f1d7d7;
+  --text: #222222;
+  --text-secondary: #666666;
+  --primary:  #6366f1;
+  --primary-hover:  #4043e9;
+  --border: #dddddd;
+  --shadow: 0 2px 5px rgba(0, 0, 0, .08);
+  --success: #22c55e;
+  --warning: #f59e0b;
+  --danger: #dc2626;
+  --info: #0ea5e9;
+  --radius: 10px;
+
+}
+
+/* ==========================
+   Tema oscuro
+========================== */
+
+[data-theme="dark"] {
+  --bg: #161616;
+  --surface: #1f1f1f;
+  --surface-2: #2b2b2b;
+  --text: #f4f4f4;
+  --text-secondary: #cfcfcf;
+  --primary:  #6366f1;
+  --primary-hover:  #4043e9;
+  --border: #353333;
+  --shadow: 0 3px 8px rgba(0, 0, 0, .45);
+
+}
+
+html {
+  font-size: 16px;
+}
+
+html,
+body,
+#root {
+  min-height: 100vh;
+  margin: 0;
+}
+
+body {
+  font-family:
+    system-ui,
+    -apple-system,
+    BlinkMacSystemFont,
+    "Segoe UI",
+    Roboto,
+    Oxygen,
+    Ubuntu,
+    Cantarell,
+    "Open Sans",
+    "Helvetica Neue",
+    sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  transition:
+    background .25s,
+    color .25s;
+
+}
+
+img {
+  max-width: 100%;
+  display: block;
+}
+
+button,
+input,
+select,
+textarea {
+  font: inherit;
+  background: var(--surface);
+  color: var(--text);
+  border: 1px solid var(--border);
+
+}
+
+table {
+  width: 100%;
+}

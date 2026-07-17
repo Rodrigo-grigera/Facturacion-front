@@ -1,0 +1,44 @@
+.tabla {
+    width: 100%;
+    background: var(--bg);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    overflow: hidden;
+    border-collapse: collapse;
+}
+
+.tabla th {
+    background: var(--primary);
+    color: white;
+    padding: 14px;
+    text-align: left;
+}
+
+.tabla td {
+    padding: 12px;
+    border-bottom: 1px solid var(--border);
+    text-align: left;
+}
+
+.tabla tbody tr:hover{
+    background:var(--surface-2);
+}
+.btn_cliente{
+    border-radius: 20px;
+    height: 50px;
+}
+.cont_title{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+@media (max-width:768px) {
+
+    .tabla {
+        display: block;
+        overflow-x: auto;
+        white-space: nowrap;
+    }
+
+}

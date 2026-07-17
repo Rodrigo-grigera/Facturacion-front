@@ -1,0 +1,48 @@
+.formContainer {
+    width: 100%;
+    max-width: 700px;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    margin: 0 auto;
+
+}
+
+.formContainer label {
+    font-weight: bold;
+    text-align: left;
+}
+
+.formContainer input {
+    background:var(--surface);
+    color:var(--text);
+    border:1px solid var(--border);
+    border-radius:8px;
+    padding:12px;
+    transition:.2s;
+}
+.formContainer input:focus{
+    outline:none;
+    border-color:var(--primary);
+    box-shadow:0 0 0 3px rgba(37,99,235,.18);
+}
+.formContainer button {
+    background:var(--primary);
+    color:white;
+    border:none;
+    border-radius:8px;
+    padding:12px;
+    cursor:pointer;
+    transition:.2s;
+}
+button:hover{
+   background:var(--primary-hover);
+}
+
+@media (max-width:768px){
+
+    .formContainer{
+        max-width:100%;
+    }
+
+}
