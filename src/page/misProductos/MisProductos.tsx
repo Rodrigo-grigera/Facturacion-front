@@ -4,13 +4,11 @@ import { Modal } from "../../componenetes/modal/Modal";
 import { Cards_Producto } from "./Cards_Producto"
 import { useProducts } from "./hooks/useProducts"
 import './styles.css'
-import { useNavigate } from "react-router-dom";
-import { ProductosFetch } from "../../service/Service";
+
 
 export function MisProductos() {
     const { state } = useProducts();
     const [open, setOpen] = useState(true)
-    const navigate = useNavigate();
 
     if (state.status === 'idle' || state.status === 'loading') {
         return <p>Cargando productos..</p>
