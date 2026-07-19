@@ -1,5 +1,5 @@
 import { useState, type FormEvent } from "react"
-import styles from '../agregarProduco/style.module.css';
+import styles from '../agregarProducto/style.module.css';
 import { crearCliente } from "../../service/Service";
 import type { CrearCliente } from "../../types/types";
 import { Modal } from "../modal/Modal";

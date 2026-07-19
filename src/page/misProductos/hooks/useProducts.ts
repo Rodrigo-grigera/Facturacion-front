@@ -15,10 +15,17 @@ export function useProducts() {
 
             try {
                 const resp = await ProductosFetch(controller);
+                if(!resp.data){ //la devolucion de data en nustro back es opcional 
+                    throw new Error('No se pudieron cargar los productos')
+                }
                 setState({ status: 'success', data: resp })
 
             } catch(error) {
                 if(error instanceof Error && error.name === 'AbortError'){
+                    return;
+                }
+                if(error instanceof Error && error.message === 'Failed to fetch'){
+                    setState({status: 'error', error:'No se pudo conectar con el servidor. Verifique su conexión o intente más tarde.'})
                     return;
                 }
                 setState({status:'error', error: `Fallo de conexion: ${error}`})

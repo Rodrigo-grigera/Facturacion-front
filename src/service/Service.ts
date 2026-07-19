@@ -7,7 +7,7 @@ export async function ClientesFetch(controller: AbortController): Promise<respon
     if (!resp.ok) {
         throw new Error('No se encontraron clientes')
     }
-    const data = resp.json()
+    const data = await resp.json()
     return data;
 }
 
@@ -15,9 +15,9 @@ export async function ClientesFetch(controller: AbortController): Promise<respon
 export async function ProductosFetch(controller: AbortController): Promise<response<Producto>> {
     const resp = await fetch(`${URL_base}/productos`, { signal: controller.signal });
     if (!resp.ok) {
-        throw new Error('No se encontro producto')
+        throw new Error('No se encontraron productos')
     }
-    const data = resp.json()
+    const data = await resp.json()
     return data
 }
 
