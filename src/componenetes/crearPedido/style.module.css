@@ -1,0 +1,26 @@
+.cont_pedido {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    align-items: flex-start;
+    background-color: azure;
+    border: solid 2px black;
+    padding: 20px;
+    color:black
+}
+
+.cont_table{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+.btn_confirm{
+    max-width: 200px;
+    border-radius: 50px;
+}
+.div_destina{
+    display: flex;
+    gap: 60px;
+    margin-bottom: 20px;
+}

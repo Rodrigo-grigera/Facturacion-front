@@ -1,4 +1,5 @@
 import type { Cliente } from "../../types/types";
+import { usePedidoContext } from "../../componenetes/context/PedidoContext";
 
 
 interface props {
@@ -7,6 +8,8 @@ interface props {
 
 
 export function CardsCliente({ clientes }: props) {
+    const {seleccionarCliente} = usePedidoContext();
+
 
     return (
 
@@ -17,7 +20,7 @@ export function CardsCliente({ clientes }: props) {
             <td>{clientes.localidad?.nombre}</td>
             <td>{clientes.direccion}</td>
             <td>{clientes.celular}</td>
-
+            <td><button onClick={()=> seleccionarCliente(clientes)}> + </button></td>
         </tr>
 
 

@@ -1,6 +1,7 @@
 import React, { createContext, useContext, useState, type ReactNode } from "react";
-import type { ClienteSeleccionado, ItemCarrito, PedidoContextType} from "./type";
-import type { Producto } from "../../types/types";
+import type { ItemCarrito, PedidoContextType} from "./type";
+import type { Cliente, Producto } from "../../types/types";
+import { Modal } from "../modal/Modal";
 
 
 interface Props {
@@ -10,12 +11,22 @@ interface Props {
 const PedidoContext = createContext<PedidoContextType | undefined>(undefined);
 
 export function PedidoProvider({ children }: Props) {
-    const [cliente, setCliente] = useState<ClienteSeleccionado | undefined>(undefined);
+    const [cliente, setCliente] = useState<Cliente| undefined>(undefined);
     const [carrito, setCarrito] = useState<ItemCarrito[]>([]);
+    const [mensaje, setMensaje] = useState('');
 
-    const seleccionarCliente = (cli: ClienteSeleccionado | undefined) => {
+    const seleccionarCliente = (cli: Cliente | undefined) => {
         setCliente(cli);
+        setMensaje(`Cliente seleccionado ${cli?.nombre} ${cli?.apellido}`)
     };
+
+    const borrarMensaje=()=>{
+        setMensaje('')
+    }
+
+    const vaciarCliente = () =>{
+        setCliente(undefined)
+    }
 
     const agregarProducto = (producto: Producto) => {
 
@@ -23,14 +34,14 @@ export function PedidoProvider({ children }: Props) {
             const existProducto = carritoActual.find(item => item.producto.id_producto === producto.id_producto)
             if (existProducto) {
                 if (existProducto.cantidad >= producto.stock) {
-                    alert(`¡Atencion! ..  No hay mas productos de ${producto.nombre}`)
+                    setMensaje(`¡Atencion! ..  No hay mas productos de ${producto.nombre}`)
                     return carritoActual;
                 }
                 return carritoActual.map(item => item.producto.id_producto === producto.id_producto
                     ? { ...item, cantidad: item.cantidad + 1 } : item)
             }
             if (producto.stock <= 0) {
-                alert(`El producto ${producto.nombre} no tiene stock disponible.`);
+                setMensaje(`El producto ${producto.nombre} no tiene stock disponible.`);
                 return carritoActual; 
             }
 
@@ -60,8 +71,11 @@ export function PedidoProvider({ children }: Props) {
 
     const totalEstimado = carrito.reduce((acc, item) => acc + (Number(item.producto.precio)* item.cantidad),0)
     return (
-        <PedidoContext.Provider value={{cliente,carrito,seleccionarCliente,agregarProducto,eliminarProducto,restarProducto,vaciarPedido,totalEstimado}}>
+        <PedidoContext.Provider value={{cliente,carrito,mensaje,vaciarCliente,borrarMensaje,seleccionarCliente,agregarProducto,eliminarProducto,restarProducto,vaciarPedido,totalEstimado}}>
             {children}
+            <Modal isOpen={!!mensaje} onClose={borrarMensaje}>
+                <p>{mensaje}</p>
+            </Modal>
         </PedidoContext.Provider>
     )
 }

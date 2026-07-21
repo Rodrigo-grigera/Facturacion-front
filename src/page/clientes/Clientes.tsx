@@ -1,25 +1,33 @@
 
-import { NavLink, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { CardsCliente } from "./CardsClinete";
 import { useClientes } from "./Hook/useClientes";
 import styles from './styles.module.css'
+import { Modal } from "../../componenetes/modal/Modal";
+import { useState } from "react";
+import { usePedidoContext } from "../../componenetes/context/PedidoContext";
+
 
 export function Clientes() {
+    const[open, setOpen] = useState(true);
     const { state } = useClientes();
-    const navigate = useNavigate()
+    const navigate = useNavigate();
+
 
     if (state.status === 'idle' || state.status === 'loading') {
         return <p>Cargando clientes</p>
     }
-    if (state.status === 'error') {
-        return <p>Error: {state.error}</p>
-    }
     return (
         <>
-        <header className={styles.cont_title}>
-            <h2>Mis Clientes</h2>
-            <button onClick={() => navigate('/nuevoCliente')} className={styles.btn_cliente}>Crear Cliente</button>
-        </header>
+        {state.status === 'error' && (
+            <Modal isOpen={open} onClose={() => setOpen(false)}>
+                <p>{state.error}</p>
+            </Modal>
+        )}
+            <header className={styles.cont_title}>
+                <h2>Mis Clientes</h2>
+                <button onClick={() => navigate('/nuevoCliente')} className={styles.btn_cliente}>Crear Cliente</button>
+            </header>
 
             <table className={styles.tabla}>
                 <thead  >
@@ -33,7 +41,15 @@ export function Clientes() {
                 </thead>
 
                 <tbody>
-                    {state.data.data.map(cli => (<CardsCliente key={cli.id_cliente} clientes={cli} />))}
+                    {state.status === 'success' ? (
+
+                        state.data.data.map(cli => (<CardsCliente key={cli.id_cliente} clientes={cli} />)))
+
+                        : (
+                            <div className="error-placeholder">
+                                <p>No se pudieron cargar los clientes: {state.error}</p>
+                            </div>
+                        )}
                 </tbody>
 
             </table>

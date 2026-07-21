@@ -1,5 +1,6 @@
 import type { ReactNode } from "react";
 import styles from './styles.module.css';
+import { usePedidoContext } from "../context/PedidoContext";
 
 interface Props {
     isOpen: boolean
@@ -8,7 +9,6 @@ interface Props {
 }
 
 export function Modal({ children, onClose, isOpen }: Props) {
-
     if (!isOpen) return null;
 
     return (
@@ -18,6 +18,7 @@ export function Modal({ children, onClose, isOpen }: Props) {
                     <button onClick={onClose} className={styles.btn_close}> X </button>
                     {children}
                 </div>
+                <button onClick={onClose}>OK</button>
             </article>
         </>
     )
