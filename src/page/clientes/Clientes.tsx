@@ -5,12 +5,14 @@ import { useClientes } from "./Hook/useClientes";
 import styles from './styles.module.css'
 import { Modal } from "../../componenetes/modal/Modal";
 import { useState } from "react";
+import { usePedidoContext } from "../../componenetes/context/PedidoContext";
 
 
 export function Clientes() {
     const[open, setOpen] = useState(true);
     const { state } = useClientes();
-    const navigate = useNavigate()
+    const navigate = useNavigate();
+
 
     if (state.status === 'idle' || state.status === 'loading') {
         return <p>Cargando clientes</p>
@@ -19,7 +21,8 @@ export function Clientes() {
         <>
         {state.status === 'error' && (
             <Modal isOpen={open} onClose={() => setOpen(false)}>
-                <p></p>{state.error}</Modal>
+                <p>{state.error}</p>
+            </Modal>
         )}
             <header className={styles.cont_title}>
                 <h2>Mis Clientes</h2>

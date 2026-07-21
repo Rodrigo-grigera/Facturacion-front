@@ -4,9 +4,10 @@ import { Home } from './page/home/Home';
 import { Clientes } from './page/clientes/Clientes';
 import { MisProductos } from './page/misProductos/MisProductos';
 import { AgregarProducto } from './componenetes/agregarProducto/AgregarProducto';
-import { Carrito } from './page/carrito/Carrito';
 import { PedidoProvider } from './componenetes/context/PedidoContext';
 import { NuevoCliente } from './componenetes/nuevoCliente/NuevoCliente';
+import { Pedido } from './page/pedido/Pedido';
+
 
 function App() {
 
@@ -19,7 +20,7 @@ function App() {
           <Route index element={<MisProductos/>}/>
           <Route path='/clientes' element={<Clientes />}/>
           <Route path='/crearProducto' element={<AgregarProducto/>}/>
-          <Route path='/carrito' element={<Carrito/>}/>
+          <Route path='/pedido' element={<Pedido/>}/>
           <Route path='/nuevoCliente' element={<NuevoCliente/>}/>
           </Route>
         </Routes>

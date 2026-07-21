@@ -1,4 +1,4 @@
-import type { Producto } from "../../types/types";
+import type { Cliente, Producto } from "../../types/types";
 
 
 export interface ItemCarrito{
@@ -6,19 +6,14 @@ export interface ItemCarrito{
     cantidad: number
 }
 
-export interface ClienteSeleccionado{
-    id_cliente: number,
-    nombre: string,
-    apellido: string,
-    localidad: number,
-    direccion?: string,
-    celular?: string
-}
 
 export interface PedidoContextType{
-    cliente: ClienteSeleccionado | undefined;
+    cliente: Cliente | undefined;
     carrito: ItemCarrito[];
-    seleccionarCliente: (cliente: ClienteSeleccionado | undefined) => void;
+    mensaje: string;
+    vaciarCliente: () => void; 
+    borrarMensaje: () => void;
+    seleccionarCliente: (cliente: Cliente | undefined) => void;
     agregarProducto: (producto: Producto) => void;
     restarProducto: (id_producto: number) => void;
     eliminarProducto: (id_producto: number) => void;

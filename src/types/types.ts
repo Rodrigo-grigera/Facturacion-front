@@ -48,3 +48,12 @@ export interface respCreate {
     code: number,
     message: string
 }
+
+export interface DetallePedido{
+    productoId: number,
+    cantidad: number
+}
+export interface Pedido{
+    clienteId: number,
+    detalles: DetallePedido[]
+}
